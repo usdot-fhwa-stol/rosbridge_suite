@@ -17,8 +17,9 @@
   <maintainer email="jihoonlee.in@gmail.com">Jihoon Lee</maintainer>
   <maintainer email="ros-tooling@foxglove.dev">Foxglove</maintainer>
 
+  <build_depend>carma_cmake_common</build_depend>
   <buildtool_depend>ament_cmake_ros</buildtool_depend>
-
+  
   <exec_depend>rosapi_msgs</exec_depend>
   <exec_depend>builtin_interfaces</exec_depend>
   <exec_depend>rclpy</exec_depend>

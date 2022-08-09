@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 project(rosapi)
 
+find_package(carma_cmake_common REQUIRED)
+carma_check_ros_version(2)
+
 find_package(ament_cmake_ros REQUIRED)
 
 if(NOT CMAKE_CXX_STANDARD)
