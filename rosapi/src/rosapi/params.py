@@ -224,12 +224,23 @@ def _get_param_names(node_name):
     global _parent_node_name
     if node_name == _parent_node_name:
         return []
-
+    
     client = _node.create_client(ListParameters, f"{node_name}/list_parameters")
 
-    ready = client.wait_for_service(timeout_sec=5.0)
+    ### Modified by Leidos 2022 to account for this issue https://github.com/RobotWebTools/rosbridge_suite/issues/756
+
+    ## Old logic
+    #ready = client.wait_for_service(timeout_sec=5.0)
+    #if not ready:
+    #    raise RuntimeError("Wait for list_parameters service timed out")
+
+    ## New logic
+    ready = client.wait_for_service(timeout_sec=0.1)
+
     if not ready:
-        raise RuntimeError("Wait for list_parameters service timed out")
+        return []
+
+    ### End modification
 
     request = ListParameters.Request()
     future = client.call_async(request)
